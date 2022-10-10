@@ -74,7 +74,8 @@ vector<int> suffixa(string &s){
 				cc++, head[cc] = i;
 			col1[sa[i]] = cc;
 		}
-		col = col1;
+		swap(col, col1);
+		if(col[sa[n - 1]] == n - 1) break;
 	}
 	return sa;
 }
