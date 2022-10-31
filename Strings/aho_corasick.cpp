@@ -6,8 +6,7 @@ struct vertex {
 vector<vertex> t(1);
 void add(string &s, int pos) {
   int node = 0;
-  for(char ch : s)
-  {
+  for(char ch : s) {
     ch -= 'a';
     if(t[node].go[ch] == -1)
       t[node].go[ch] = t.size(); t.emplace_back(ch, node);

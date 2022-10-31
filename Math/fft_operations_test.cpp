@@ -1,22 +1,9 @@
-#include <bits/stdc++.h>
-#define fst first
-#define snd second
-#define fore(i,a,b) for(int i=a,ThxDem=b;i<ThxDem;++i)
-#define pb push_back
-#define ALL(s) s.begin(),s.end()
-#define FIN ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
-#define SZ(s) int(s.size())
-using namespace std;
-typedef long long ll;
-typedef pair<int,int> ii;
-
 // MAXN must be power of 2 !!
 // MOD-1 needs to be a multiple of MAXN !!
 // big mod and primitive root for NTT:
 typedef int tf;
 typedef vector<tf> poly;
 const tf MOD=998244353,RT=3,MAXN=1<<16;
-
 tf addmod(tf a, tf b){tf r=a+b;if(r>=MOD)r-=MOD;return r;}
 tf submod(tf a, tf b){tf r=a-b;if(r<0)r+=MOD;return r;}
 tf mulmod(ll a, ll b){return a*b%MOD;}
@@ -30,8 +17,7 @@ tf pm(ll a, ll b){
 }
 tf inv(tf a){return pm(a,MOD-2);}
 // FFT
-/*
-struct CD {
+/*struct CD {
   double r,i;
   CD(double r=0, double i=0):r(r),i(i){}
   double real()const{return r;}
@@ -41,8 +27,7 @@ CD operator*(const CD& a, const CD& b){
   return CD(a.r*b.r-a.i*b.i,a.r*b.i+a.i*b.r);}
 CD operator+(const CD& a, const CD& b){return CD(a.r+b.r,a.i+b.i);}
 CD operator-(const CD& a, const CD& b){return CD(a.r-b.r,a.i-b.i);}
-const double pi=acos(-1.0);
-*/
+const double pi=acos(-1.0);*/
 // NTT
 struct CD {
   tf x;
@@ -95,11 +80,9 @@ poly multiply(poly& p1, poly& p2){
   fore(i,0,n)res.pb(cp1[i].x); // NTT
   return res;
 }
-
 //Polynomial division: O(n*log(n))
 //Multi-point polynomial evaluation: O(n*log^2(n))
 //Polynomial interpolation: O(n*log^2(n))
-
 //Works with NTT. For FFT, just replace addmod,submod,mulmod,inv
 poly add(poly &a, poly &b){
   int n=SZ(a),m=SZ(b);
@@ -111,7 +94,6 @@ poly add(poly &a, poly &b){
   while(SZ(ans)>1&&!ans.back())ans.pop_back();
   return ans;
 }
-
 poly invert(poly &b, int d){
  poly c = {inv(b[0])};
  while(SZ(c)<=d){
@@ -126,7 +108,6 @@ poly invert(poly &b, int d){
  c.resize(d+1);
  return c;
 }
-
 pair<poly,poly> divslow(poly &a, poly &b){
   poly q,r=a;
   while(SZ(r)>=SZ(b)){
@@ -139,7 +120,6 @@ pair<poly,poly> divslow(poly &a, poly &b){
   reverse(ALL(q));
   return {q,r};
 }
-
 pair<poly,poly> divide(poly &a, poly &b){  //returns {quotient,remainder}
   int m=SZ(a),n=SZ(b),MAGIC=750;
   if(m<n) return {{0},a};
@@ -155,16 +135,13 @@ pair<poly,poly> divide(poly &a, poly &b){  //returns {quotient,remainder}
   poly r=add(a,bq);
   return {q,r};
 }
-
 vector<poly> tree;
-
 void filltree(vector<tf> &x){
   int k=SZ(x);
   tree.resize(2*k);
   fore(i,k,2*k) tree[i]={submod(0,x[i-k]),1};
   for(int i=k-1;i;i--) tree[i]=multiply(tree[2*i],tree[2*i+1]);
 }
-
 vector<tf> evaluate(poly &a, vector<tf> &x){
   filltree(x);
   int k=SZ(x);
@@ -174,13 +151,11 @@ vector<tf> evaluate(poly &a, vector<tf> &x){
   vector<tf> r; fore(i,0,k) r.pb(ans[i+k][0]);
   return r;
 }
-
 poly derivate(poly &p){
   poly ans(SZ(p)-1);
   fore(i,1,SZ(p)) ans[i-1]=mulmod(p[i],i);
   return ans;
 }
-
 poly interpolate(vector<tf> &x, vector<tf> &y){
   filltree(x);
   poly p=derivate(tree[1]);
@@ -195,7 +170,6 @@ poly interpolate(vector<tf> &x, vector<tf> &y){
   }
   return intree[1];
 }
-
 int main(){FIN;
   int m,k; cin>>m>>k;
   int top=max(k,m)+2;

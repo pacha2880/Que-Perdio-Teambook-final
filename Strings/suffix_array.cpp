@@ -1,4 +1,3 @@
-// el table es para comparar substrings en O(1) memoria nlogn
 vector<vector<int>> table;
 vector<int> suffixa(string &s){
   int n = s.size(), cc, ax;
