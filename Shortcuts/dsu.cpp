@@ -1,5 +1,3 @@
-
-
 int cnt[maxn];
 void dfs(int v, int p, bool keep){
     int mx = -1, bigChild = -1;

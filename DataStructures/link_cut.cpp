@@ -3,7 +3,6 @@ namespace linkcut {
 #include <bits/stdc++.h>
 #define fore(x,a,b) for(int x=a,qwe=b; x<qwe; x++)
 using namespace std;
-//copy of elvasito linkcut
 //Most changes required by problems of linkcut with values on vertex and
 //query on path are usually only on the 4 lines below
 const int N_DELTA = 0, N_VALUE = 0;
@@ -44,7 +43,6 @@ void Node_t::upd(){
   stVal = queryOp(queryOp(getstVal(ch[0]), joinVD(nVal, d)), getstVal(ch[1]));
   sz = 1 + getSize(ch[0]) + getSize(ch[1]);
 }
-
 //splay related functions
 void connect(Node ch, Node p, int isl){if(ch)ch->p=p; if(isl>=0)p->ch[1-isl]=ch;}
 void rotate(Node x){
@@ -63,14 +61,12 @@ void splay(Node x){
   }
   x->push(); x->upd();
 }
-
 Node expose(Node x){
   Node last=0;
   for(Node y=x; y; y=y->p)splay(y),y->ch[0]=last,y->upd(),last=y;
   splay(x);
   return last;
 }
-
 //only new Node_t(v) and the functions below should be used
 Node findRoot(Node x){expose(x); while(x->ch[1])x=x->ch[1]; splay(x); return x;}
 Node lca(Node x, Node y){expose(x); return expose(y);}

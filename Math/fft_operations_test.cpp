@@ -1,4 +1,3 @@
-//copy_paste elvasito 
 #include <bits/stdc++.h>
 #define fst first
 #define snd second
