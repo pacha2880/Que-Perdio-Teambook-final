@@ -3,9 +3,9 @@
 int mu[tam], is_prime [tam];
 fore(i, 0, tam) mu[i]=is_prime[i]=1;
 fore(i, 2, tam) if(is_prime[i]) {
-    forg(j, i, tam, i) {
-        if(j > i) is_prime[j] = 0;
-        if(j / i % i == 0) mu[j]=0;
-        mu[j] = -mu[j];
-    }
+  forg(j, i, tam, i) {
+    if(j > i) is_prime[j] = 0;
+    if(j / i % i == 0) mu[j]=0;
+    mu[j] = -mu[j];
+  }
 }
