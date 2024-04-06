@@ -4,13 +4,13 @@ void fht(ll* p, int n, bool inv){
   for(int i = 0; i < n; i += 2 * l)
   fore(j, 0, l)
   {
-    ll u = p[i + j], v = p[i + l + j];
-    if(!inv) p[i + j] = u + v, p[i + l + j] = u - v; // XOR
-    else p[i + j] = (u + v) / 2,p[i + l + j] = (u - v) / 2;
-    //if(!inv) p[i + j] = v, p[i + l + j] = u + v; // AND
-    //else p[i + j] = -u + v, p[i + l + j] = u;
-    //if(!inv) p[i + j] = u + v, p[i + l + j] = u; // OR
-    //else p[i + j] = v, p[i + l + j] = u - v;
+  ll u = p[i + j], v = p[i + l + j];
+  if(!inv) p[i + j] = u + v, p[i + l + j] = u - v; // XOR
+  else p[i + j] = (u + v) / 2,p[i + l + j] = (u - v) / 2;
+  //if(!inv) p[i + j] = v, p[i + l + j] = u + v; // AND
+  //else p[i + j] = -u + v, p[i + l + j] = u;
+  //if(!inv) p[i + j] = u + v, p[i + l + j] = u; // OR
+  //else p[i + j] = v, p[i + l + j] = u - v;
   }
 }
 // like polynomial multiplication, but XORing exponents

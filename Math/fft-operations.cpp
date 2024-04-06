@@ -10,8 +10,8 @@ tf mulmod(ll a, ll b){return a*b%MOD;}
 tf pm(ll a, ll b){
   ll r=1;
   while(b){
-    if(b&1) r=mulmod(r,a); b>>=1;
-    a=mulmod(a,a);
+  if(b&1) r=mulmod(r,a); b>>=1;
+  a=mulmod(a,a);
   }
   return r;
 }
@@ -47,20 +47,20 @@ int R[MAXN+9];
 void dft(CD* a, int n, bool inv){
   fore(i,0,n)if(R[i]<i)swap(a[R[i]],a[i]);
   for(int m=2;m<=n;m*=2){
-    //double z=2*pi/m*(inv?-1:1); // FFT
-    //CD wi=CD(cos(z),sin(z)); // FFT
-    CD wi=root(m,inv); // NTT
-    for(int j=0;j<n;j+=m){
-      CD w(1);
-      for(int k=j,k2=j+m/2;k2<j+m;k++,k2++){
-        CD u=a[k];CD v=a[k2]*w;a[k]=u+v;a[k2]=u-v;w=w*wi;
-      }
+  //double z=2*pi/m*(inv?-1:1); // FFT
+  //CD wi=CD(cos(z),sin(z)); // FFT
+  CD wi=root(m,inv); // NTT
+  for(int j=0;j<n;j+=m){
+    CD w(1);
+    for(int k=j,k2=j+m/2;k2<j+m;k++,k2++){
+    CD u=a[k];CD v=a[k2]*w;a[k]=u+v;a[k2]=u-v;w=w*wi;
     }
+  }
   }
   //if(inv)fore(i,0,n)a[i]/=n; // FFT
   if(inv){ // NTT
-    CD z(pm(n,MOD-2)); // pm: modular exponentiation
-    fore(i,0,n)a[i]=a[i]*z;
+  CD z(pm(n,MOD-2)); // pm: modular exponentiation
+  fore(i,0,n)a[i]=a[i]*z;
   }
 }
 poly multiply(poly& p1, poly& p2){
@@ -88,8 +88,8 @@ poly add(poly &a, poly &b){
   int n=SZ(a),m=SZ(b);
   poly ans(max(n,m));
   fore(i,0,max(n,m)){
-    if(i<n) ans[i]=addmod(ans[i],a[i]);
-    if(i<m) ans[i]=addmod(ans[i],b[i]);  
+  if(i<n) ans[i]=addmod(ans[i],a[i]);
+  if(i<m) ans[i]=addmod(ans[i],b[i]);  
   }
   while(SZ(ans)>1&&!ans.back())ans.pop_back();
   return ans;
@@ -111,11 +111,11 @@ poly invert(poly &b, int d){
 pair<poly,poly> divslow(poly &a, poly &b){
   poly q,r=a;
   while(SZ(r)>=SZ(b)){
-    q.pb(mulmod(r.back(),inv(b.back())));
-    if(q.back()) fore(i,0,SZ(b)){
-      r[SZ(r)-i-1]=submod(r[SZ(r)-i-1],mulmod(q.back(),b[SZ(b)-i-1]));
-    }
-    r.pop_back();
+  q.pb(mulmod(r.back(),inv(b.back())));
+  if(q.back()) fore(i,0,SZ(b)){
+    r[SZ(r)-i-1]=submod(r[SZ(r)-i-1],mulmod(q.back(),b[SZ(b)-i-1]));
+  }
+  r.pop_back();
   }
   reverse(ALL(q));
   return {q,r};
@@ -164,9 +164,9 @@ poly interpolate(vector<tf> &x, vector<tf> &y){
   vector<poly> intree(2*k);
   fore(i,k,2*k) intree[i]={mulmod(y[i-k],inv(d[i-k]))};
   for(int i=k-1;i;i--){
-    poly p1=multiply(tree[2*i],intree[2*i+1]);
-    poly p2=multiply(tree[2*i+1],intree[2*i]);
-    intree[i]=add(p1,p2);
+  poly p1=multiply(tree[2*i],intree[2*i+1]);
+  poly p2=multiply(tree[2*i+1],intree[2*i]);
+  intree[i]=add(p1,p2);
   }
   return intree[1];
 }
@@ -176,14 +176,14 @@ int main(){FIN;
   vector<int> x,y;
   int ac=0;
   fore(i,0,top){
-    ac=addmod(ac,pm(i,k));
-    x.pb(i); y.pb(ac);
+  ac=addmod(ac,pm(i,k));
+  x.pb(i); y.pb(ac);
   }
   poly p=interpolate(x,y);
   vector<int> xs;
   fore(i,0,m){
-    ll x; cin>>x; x%=MOD;
-    xs.pb(x);
+  ll x; cin>>x; x%=MOD;
+  xs.pb(x);
   }
   while(SZ(xs)!=top) xs.pb(0);
   vector<int> ans=evaluate(p,xs);

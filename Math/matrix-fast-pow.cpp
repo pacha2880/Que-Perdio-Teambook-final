@@ -8,7 +8,7 @@ Matrix operator*(Matrix &a, Matrix &b) {
   int n=SZ(a),m=SZ(b[0]),z=SZ(a[0]);
   Matrix r(n,vector<ll>(m));
   fore(i,0,n)fore(j,0,m)fore(k,0,z)
-    r[i][j]+=a[i][k]*b[k][j],r[i][j]%=mod;
+  r[i][j]+=a[i][k]*b[k][j],r[i][j]%=mod;
   return r;
 }
 Matrix be(Matrix b, ll e) {

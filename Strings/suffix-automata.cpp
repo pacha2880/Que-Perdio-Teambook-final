@@ -11,15 +11,15 @@ void sa_extend(char c){
   for(p=last;p!=-1&&!st[p].next.count(c);p=st[p].link)st[p].next[c]=k;
   if(p==-1)st[k].link=0;
   else {
-    int q=st[p].next[c];
-    if(st[p].len+1==st[q].len)st[k].link=q;
-    else {
-      int w=sz++;
-      st[w].len=st[p].len+1;
-      st[w].next=st[q].next;st[w].link=st[q].link;
-      for(;p!=-1&&st[p].next[c]==q;p=st[p].link)st[p].next[c]=w;
-      st[q].link=st[k].link=w;
-    }
+  int q=st[p].next[c];
+  if(st[p].len+1==st[q].len)st[k].link=q;
+  else {
+    int w=sz++;
+    st[w].len=st[p].len+1;
+    st[w].next=st[q].next;st[w].link=st[q].link;
+    for(;p!=-1&&st[p].next[c]==q;p=st[p].link)st[p].next[c]=w;
+    st[q].link=st[k].link=w;
+  }
   }
   last=k;
 }

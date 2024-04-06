@@ -12,10 +12,10 @@ void add_edge(int a, int b){
 vector<int> p;
 void go(int x){
   while(g[x].size()) {
-    int y=g[x].front().y;
-    //g[y].erase(g[x].front().rev);
-    g[x].pop_front();
-    go(y);  }
+  int y=g[x].front().y;
+  //g[y].erase(g[x].front().rev);
+  g[x].pop_front();
+  go(y);  }
   p.push_back(x);}
 vector<int> get_path(int x){ // get a path that begins in x
 // check that a path exists from x before calling to get_path!

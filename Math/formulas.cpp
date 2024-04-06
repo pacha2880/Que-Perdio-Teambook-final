@@ -18,7 +18,7 @@ Bn = S Sum(k,0,n)Sr(n,k), where Sr is Stirling number of 2kind
 −ln(1−x)=x + x^2/2 + x^3/3+...=Sum(n,0,inf)x^n/n
 e^x=1+x + x^2/2! + x^3/3!+...=Sum(n,0,inf)x^n/n!
 (1−x)^−k=C(k−1,0)x^0+C(k,1)x^1+C(k+1,2)x^2+...=Sum(n,0,inf)C(n+k-1,n)x^n
-For OGF, C(x)=A(x)^k     generates the sequence cn=Sum(i1...ik,i1+i2+...+ik=n)(ai1*ai2...*aik)
-For EGF, C(x)=A(x)^k     generates the sequence 
+For OGF, C(x)=A(x)^k   generates the sequence cn=Sum(i1...ik,i1+i2+...+ik=n)(ai1*ai2...*aik)
+For EGF, C(x)=A(x)^k   generates the sequence 
 cn=Sum(i1...ik,i1+i2+...+ik=n)(ai1*ai2...*aik)*n!/(i1!*...ik!)
 Suppose want to generate the sequence cn=a0+a1+...+an. Then, we can take C(x)=1/(1−x)*A(x).
