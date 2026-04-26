@@ -14,5 +14,4 @@ fore(sz, 0, n) {
   int KL = K[i][j-1]; int KR = K[i+1][j]; DP[i][j] = INF;
   for (int k = KL; k <= KR; k++) {
     int newVal = DP[i][k] + DP[k][j] + C[i][j];
-    if (newVal < DP[i][j]) {
-    K[i][j] = k; DP[i][j] = newVal; } } } }
+    if (newVal < DP[i][j]) {K[i][j] = k; DP[i][j] = newVal;}}}}

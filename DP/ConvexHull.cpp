@@ -1,7 +1,6 @@
 // kx+m, and query maximum values at points x.
 #pragma once
-struct Line {
-  mutable ll k, m, p;
+struct Line { mutable ll k, m, p;
   bool operator<(const Line& o) const { return k < o.k; }
   bool operator<(ll x) const { return p < x; } };
 struct LineContainer : multiset<Line, less<>> {
@@ -12,14 +11,10 @@ struct LineContainer : multiset<Line, less<>> {
   bool isect(iterator x, iterator y) {
     if (y == end()) { x->p = inf; return false; }
     if (x->k == y->k) x->p = x->m > y->m ? inf : -inf;
-    else x->p = div(y->m - x->m, x->k - y->k);
-    return x->p >= y->p; }
-  void add(ll k, ll m) {
-    auto z = insert({k, m, 0}), y = z++, x = y;
+    else x->p = div(y->m - x->m, x->k - y->k);return x->p>=y->p;}
+  void add(ll k, ll m) {auto z = insert({k, m, 0}), y = z++, x=y;
     while (isect(y, z)) z = erase(z);
     if (x != begin() && isect(--x, y)) isect(x, y = erase(y));
-    while ((y = x) != begin() && (--x)->p >= y->p)
-      isect(x, erase(y)); }
-  ll query(ll x) {
-    assert(!empty()); auto l = *lower_bound(x);
+    while ((y = x) != begin() && (--x)->p>=y->p)isect(x,erase(y));}
+  ll query(ll x) { assert(!empty()); auto l = *lower_bound(x);
     return l.k * x + l.m; } };
